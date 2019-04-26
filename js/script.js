@@ -3,16 +3,30 @@
 // all the image script links have finished loading
 
 
-//refactor
+eventListeners();
 function eventListeners() {
-    // window event list
+    const ui = new UI()
+
     window.addEventListener('load', function () {
-        document.querySelector('.preloader').style.display = "none";
+        ui.hidePreloader();
     })
-    // nav btn
+
     document.querySelector('.navBtn').addEventListener('click', function () {
-        document.querySelector('.nav').classList.toggle('nav--show');
+        ui.showNav()
     })
 }
 
+
+//constructor
+function UI() {
+
+}
+
+UI.prototype.hidePreloader = function () {
+    document.querySelector('.preloader').style.display = "none";
+}
+
+UI.prototype.showNav = function () {
+    document.querySelector('.nav').classList.toggle('nav--show');
+}
 
