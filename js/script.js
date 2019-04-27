@@ -37,6 +37,26 @@ function eventListeners() {
             ui.showFeedBack('some form value are empty', 'error')
         }
     })
+
+    // display modal
+    const links = document.querySelectorAll('.work-item__icon');
+    // console.log(links)
+
+    links.forEach(function (item) {
+        item.addEventListener('click', function (event) {
+            ui.showModal(event)
+        })
+    })
+
+
+
+
+
+
+
+
+
+
 }
 
 
@@ -49,7 +69,7 @@ function eventListeners() {
 
 
 
-//constructor function ============================================
+// constructor function =========================================================
 function UI() {
 
 }
@@ -78,7 +98,6 @@ UI.prototype.videoControls = function () {
 }
 
 // check for empty value
-
 UI.prototype.checkEmpty = function (name, lastname, email) {
     let result;
     if (name === '' || lastname === '' || email === '') {
@@ -107,7 +126,6 @@ UI.prototype.showFeedBack = function (text, type) {
 }
 
 // remove alert
-
 UI.prototype.removeAlert = function (type) {
     setTimeout(function () {
         document.querySelector('.drink-form__feedback').classList.remove(type)
@@ -115,10 +133,21 @@ UI.prototype.removeAlert = function (type) {
 }
 
 // clear fields
-
 UI.prototype.clearFields = function () {
     document.querySelector('.input-name').value = '';
     document.querySelector('.input-lastname').value = '';
     document.querySelector('.input-email').value = '';
+}
 
+//show modal 
+UI.prototype.showModal = function (event) {
+    event.preventDefault();
+    if (event.target.parentElement.classList.contains('work-item__icon'));
+    let id = event.target.parentElement.dataset.id
+
+    const modal = document.querySelector('.work-modal');
+    const modalItem = document.querySelector('.work-modal__item');
+
+    modal.classList.add('work-modal--show');
+    modalItem.style.backgroundImage = `url(img/work-${id}.jpeg)`
 }
